@@ -5,7 +5,8 @@
 ### v4.2.3 (latest)
 
 * Forked from Foddy
-* Fixed an issue with nodes not able to fetch hue device from the bridge
+* Fixed an issue with Hue nodes not able to fetch hue device from the bridge
+* Fixed an issue with the Hue group node generating an error message 'The group in not yet available'
  
 ### v4.2.2
 
