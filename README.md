@@ -2,7 +2,7 @@
 
 # HueMagic - Philips Hue nodes for Node-RED
 
-[![npm](https://img.shields.io/npm/v/node-red-contrib-huemagic.svg?style=flat-square)](https://github.com/foddy/node-red-contrib-huemagic/) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Foddy/node-red-contrib-huemagic/master/LICENSE) [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LUQ7CWBWQ3Q4U) [![npm](https://img.shields.io/npm/dt/node-red-contrib-huemagic.svg?style=flat-square)](https://www.npmjs.com/package/node-red-contrib-huemagic)
+[![npm](https://img.shields.io/npm/v/node-red-contrib-huemagic.svg?style=flat-square)](https://github.com/foddy/node-red-contrib-huemagic/) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Foddy/node-red-contrib-huemagic/master/LICENSE) [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LUQ7CWBWQ3Q4U)
 
 HueMagic provides several input and output nodes for Node-RED and is the most in-depth and easy to use solution to control Philips Hue bridges, lights, groups, scenes, rules, buttons/switches, motion sensors, temperature sensors and light level sensors.
 
@@ -796,7 +796,13 @@ If the status of the node has changed via a certain command, the entire command 
 
 # Changelog
 
-### v4.2.2 (latest)
+### v4.2.3 (latest)
+
+* Forked from Foddy
+* Fixed an issue with Hue nodes not able to fetch hue device from the bridge
+* Fixed an issue with the Hue group node generating an error message 'The group in not yet available'
+
+### v4.2.2
 
 * HueMagic can now be installed again on older Node-RED versions without official support
 * Fixed an issue for Hue Group nodes not getting/updating their current status ([#342](https://github.com/Foddy/node-red-contrib-huemagic/issues/342)) (thx @bmdevx)
