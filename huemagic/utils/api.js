@@ -180,6 +180,12 @@ function API()
 	this.fullResource = function(resource, allResources = {})
 	{
 		const scope = this;
+		if (resource === undefined ) 
+		{
+			console.log("huemagic: ignore undefined resources");
+			return allResources;
+		}
+		
 		var fullResource = Object.assign({}, resource);
 
 		if(resource["owner"])
