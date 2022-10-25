@@ -2,7 +2,12 @@
 
 # Changelog
 
-### v4.2.2 (latest)
+### v4.2.3 (latest)
+
+* Forked from Foddy
+* Fixed an issue with nodes not able to fetch hue device from the bridge
+ 
+### v4.2.2
 
 * HueMagic can now be installed again on older Node-RED versions without official support
 * Fixed an issue for Hue Group nodes not getting/updating their current status ([#342](https://github.com/Foddy/node-red-contrib-huemagic/issues/342)) (thx @bmdevx)
