@@ -798,7 +798,7 @@ If the status of the node has changed via a certain command, the entire command 
 
 ### v4.2.3 (latest)
 
-* Forked from Foddy
+* Forked from Foddy as it currently contains bugs that haven't been fixed and make huemagic unusable
 * Fixed an issue with Hue nodes not able to fetch hue device from the bridge, (thanks @lukystreik)
 * Fixed an issue with the Hue group node generating an error message 'The group in not yet available'
 
