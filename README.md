@@ -1,8 +1,8 @@
-[![Hue Magic Logo](https://gist.githubusercontent.com/Foddy/9b647b910d03a31cee40f97c3988dd1c/raw/7ee635bd958ad04d7ba53c6c40ec401f879bffc2/huemagic-logo.svg)](https://flows.nodered.org/node/node-red-contrib-huemagic)
+[![Hue Magic Logo](https://gist.githubusercontent.com/Foddy/9b647b910d03a31cee40f97c3988dd1c/raw/7ee635bd958ad04d7ba53c6c40ec401f879bffc2/huemagic-logo.svg)](https://flows.nodered.org/node/node-red-contrib-huemagic-fork)
 
 # HueMagic - Philips Hue nodes for Node-RED
 
-[![npm](https://img.shields.io/npm/v/node-red-contrib-huemagic.svg?style=flat-square)](https://github.com/foddy/node-red-contrib-huemagic/) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Foddy/node-red-contrib-huemagic/master/LICENSE) [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LUQ7CWBWQ3Q4U)
+[![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Foddy/node-red-contrib-huemagic/master/LICENSE) [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LUQ7CWBWQ3Q4U)
 
 HueMagic provides several input and output nodes for Node-RED and is the most in-depth and easy to use solution to control Philips Hue bridges, lights, groups, scenes, rules, buttons/switches, motion sensors, temperature sensors and light level sensors.
 
@@ -26,7 +26,7 @@ HueMagic provides several input and output nodes for Node-RED and is the most in
 ### Installation
 HueMagic was written for **Node.js 14+** and **Node-RED v2.1+**. It supports the square-shaped Hue Bridge with the **firmware 1948086000+** or higher. You can install HueMagic directly via the [Node-RED Palette Manager](https://nodered.org/docs/user-guide/editor/palette/manager) or manually using [npm / yarn](https://nodered.org/docs/user-guide/runtime/adding-nodes).
 
-`npm install node-red-contrib-huemagic`
+`npm install node-red-contrib-huemagic-fork
 
 _Please make sure that you deactivate other Hue-related nodes in Node-RED and meet the minimum requirements of Node.js and the Philips Hue Bridge firmware!_
 
