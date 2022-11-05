@@ -45,7 +45,7 @@ _Please make sure that you deactivate other Hue-related nodes in Node-RED and me
 
 ### Examples
 
-HueMagic provides a large selection of full featured sample flows for all nodes. You can find these examples in the [examples folder on GitHub](https://github.com/Foddy/node-red-contrib-huemagic/tree/master/examples) or directly in Node-RED. To import a full featured example into your Node-RED interface, click on the Node-RED menu icon, then select "Import" and navigate to "Examples" in the sidebar of the popup. Then select the HueMagic folder and your desired node to import a sample flow.
+HueMagic provides a large selection of full featured sample flows for all nodes. You can find these examples in the [examples folder on GitHub](https://github.com/mauricedominic/node-red-contrib-huemagic/tree/master/examples) or directly in Node-RED. To import a full featured example into your Node-RED interface, click on the Node-RED menu icon, then select "Import" and navigate to "Examples" in the sidebar of the popup. Then select the HueMagic folder and your desired node to import a sample flow.
 
 <a href="https://github.com/Foddy/node-red-contrib-huemagic/tree/master/examples"><img alt="Instructions to import examples in Node-RED" src="https://user-images.githubusercontent.com/5302050/148696808-f730ad36-8d0b-4b5b-99b2-1917831f8916.gif" width="100%"></a>
 
@@ -796,11 +796,18 @@ If the status of the node has changed via a certain command, the entire command 
 
 # Changelog
 
-### v4.2.3 (latest)
+### v4.2.4 (latest)
 
-* Forked from Foddy as it currently contains bugs that haven't been fixed and make huemagic unusable
-* Fixed an issue with Hue nodes not able to fetch hue device from the bridge, (thanks @lukystreik)
+* Merged pull request #409, Commands dropped / bridge overloaded (Err=429) from @FredBlo
+* Updated package dependencies
+
+
+### v4.2.3
+
+* Forked from Foddy
+* Fixed an issue with Hue nodes not able to fetch hue device from the bridge, (thanks @Travelbacon, @lukystreik)
 * Fixed an issue with the Hue group node generating an error message 'The group in not yet available'
+
 
 ### v4.2.2
 
