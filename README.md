@@ -2,7 +2,7 @@
 
 # HueMagic - Philips Hue nodes for Node-RED
 
-[![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Foddy/node-red-contrib-huemagic/master/LICENSE) [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LUQ7CWBWQ3Q4U)
+[![npm](https://img.shields.io/npm/v/node-red-contrib-huemagic-fork.svg?style=flat-square)](https://www.npmjs.com/package/node-red-contrib-huemagic-fork/) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg?style=flat-square)](https://raw.githubusercontent.com/mauricedominic/node-red-contrib-huemagic/master/LICENSE) [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LUQ7CWBWQ3Q4U) [![npm](https://img.shields.io/npm/dt/node-red-contrib-huemagic-fork.svg?style=flat-square)](https://www.npmjs.com/package/node-red-contrib-huemagic-fork)
 
 HueMagic provides several input and output nodes for Node-RED and is the most in-depth and easy to use solution to control Philips Hue bridges, lights, groups, scenes, rules, buttons/switches, motion sensors, temperature sensors and light level sensors.
 
@@ -26,7 +26,7 @@ HueMagic provides several input and output nodes for Node-RED and is the most in
 ### Installation
 HueMagic was written for **Node.js 14+** and **Node-RED v2.1+**. It supports the square-shaped Hue Bridge with the **firmware 1948086000+** or higher. You can install HueMagic directly via the [Node-RED Palette Manager](https://nodered.org/docs/user-guide/editor/palette/manager) or manually using [npm / yarn](https://nodered.org/docs/user-guide/runtime/adding-nodes).
 
-`npm install node-red-contrib-huemagic-fork
+npm install node-red-contrib-huemagic-fork
 
 _Please make sure that you deactivate other Hue-related nodes in Node-RED and meet the minimum requirements of Node.js and the Philips Hue Bridge firmware!_
 
@@ -898,7 +898,7 @@ If the status of the node has changed via a certain command, the entire command 
 * Other optimizations, dependency updates and clean up
 
 ### Previous versions
-The full changelog [changelog](https://github.com/Foddy/node-red-contrib-huemagic/blob/master/CHANGELOG.md) can be viewed here…
+The full changelog [changelog](https://github.com/mauricedominic/node-red-contrib-huemagic/blob/master/CHANGELOG.md) can be viewed here…
 
 
 ***
