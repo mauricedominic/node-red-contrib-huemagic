@@ -796,7 +796,11 @@ If the status of the node has changed via a certain command, the entire command 
 
 # Changelog
 
-### v4.2.4 (latest)
+### v4.2.5 (latest)
+
+* Merged pull request #412, New button outputs & unload nodes from @FredBlo
+
+### v4.2.4
 
 * Merged pull request #409, Commands dropped / bridge overloaded (Err=429) from @FredBlo
 * Updated package dependencies

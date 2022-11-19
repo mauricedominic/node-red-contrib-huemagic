@@ -2,7 +2,11 @@
 
 # Changelog
 
-### v4.2.4 (latest)
+### v4.2.5 (latest)
+
+* Merged pull request #412, New button outputs & unload nodes from @FredBlo
+
+### v4.2.4
 
 * Merged pull request #409, Commands dropped / bridge overloaded (Err=429) from @FredBlo
 * Updated package dependencies
@@ -11,13 +15,6 @@
 
 * Forked from Foddy
 * Fixed an issue with Hue nodes not able to fetch hue device from the bridge, (thanks @Travelbacon, @lukystreik)
-* Fixed an issue with the Hue group node generating an error message 'The group in not yet available'
-
-
-### v4.2.3 (latest)
-
-* Forked from Foddy
-* Fixed an issue with Hue nodes not able to fetch hue device from the bridge, (thanks @lukystreik, @)
 * Fixed an issue with the Hue group node generating an error message 'The group in not yet available'
  
 ### v4.2.2
