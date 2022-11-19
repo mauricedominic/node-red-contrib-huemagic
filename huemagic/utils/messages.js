@@ -453,4 +453,3 @@ class HueTemperatureMessage
 //
 // EXPORT
 module.exports = { HueBridgeMessage, HueBrightnessMessage, HueGroupMessage, HueLightMessage, HueMotionMessage, HueRulesMessage, HueButtonsMessage, HueTemperatureMessage }
-
