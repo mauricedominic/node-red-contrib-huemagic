@@ -6,7 +6,25 @@
 
 HueMagic provides several input and output nodes for Node-RED and is the most in-depth and easy to use solution to control Philips Hue bridges, lights, groups, scenes, rules, buttons/switches, motion sensors, temperature sensors and light level sensors.
 
+# HueMagic - Fork
+
+As the HueMagic main repository has been less frequently updated, I decided on the creation of a fork that includes community contributions until the maintenance on the main repository has improved. With this fork I have also included a corresponding NPM package for ease of use in Node-RED.
+
+# HueMagic - Fork contrib migration
+
+In order to make use of this fork without having to re-create all of your existing Node-RED flows, you can take the following steps:
+
+1. Create a backup of all flows that refer to the huemagic nodes
+2. Remove all the huemagic related flows
+3. Remove all the huemagic related configuration nodes
+4. Deploy all changes
+5. Remove the original [node-red-contrib-huemagic](https://www.npmjs.com/package/node-red-contrib-huemagic) package
+6. Install the [node-red-contrib-huemagic-fork](https://www.npmjs.com/package/node-red-contrib-huemagic-fork) package
+7. Restore the backup created in step 1
+8. Deploy all changes
+
 ### Features
+
 * Simple and comprehensive control of the Hue Bridge and connected devices
 * Automatic discovery of Philips Hue bridges as well as devices, scenes & groups…
 * Output and input of multiple color code definitions *(HEX, RGB & human readable color names)*
@@ -24,6 +42,7 @@ HueMagic provides several input and output nodes for Node-RED and is the most in
 * Extensively documented in English & German
 
 ### Installation
+
 HueMagic was written for **Node.js 14+** and **Node-RED v2.1+**. It supports the square-shaped Hue Bridge with the **firmware 1948086000+** or higher. You can install HueMagic directly via the [Node-RED Palette Manager](https://nodered.org/docs/user-guide/editor/palette/manager) or manually using [npm / yarn](https://nodered.org/docs/user-guide/runtime/adding-nodes).
 
 npm install node-red-contrib-huemagic-fork
@@ -365,6 +384,7 @@ In addition to simply switching it on and off, there are also many other options
 | toggle (boolean / any) | Toggles between switching on and off, depending on the previous status of the group |
 | brightness (int / string) | Percentage value of the light brightness (0-100) or a string with the value `auto` to automatically set the light brightness based on the current time |
 | brightnessLevel (int) | Numerical value of the light brightness (0-254) |
+| incrementBrightness (int) | Percentage value of a relative brightness change. Valid range is from -100 to +100, default is +10 |
 | color (string) | `random` to set a random color or an English color name (e.g. `red`) |
 | hex (string) | Color value in hexadecimal in the form of a string |
 | rgb (array [0,0,0]) | Color value in RGB format in the form of an array |
@@ -796,7 +816,13 @@ If the status of the node has changed via a certain command, the entire command 
 
 # Changelog
 
-### v4.2.5 (latest)
+### v4.2.6 (latest)
+
+* Fork contrib migration instructions added to README
+* Merged pull request #417, #1, incrementBrightness support added for groups, solving issue #380 from @fjulian79 and updated Hue Group example accordingly
+* Updated package dependencies
+
+### v4.2.5
 
 * Merged pull request #412, New button outputs & unload nodes from @FredBlo
 

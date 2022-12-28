@@ -2,7 +2,13 @@
 
 # Changelog
 
-### v4.2.5 (latest)
+### v4.2.6 (latest)
+
+* Fork contrib migration instructions added to README
+* Merged pull request #417, #1, incrementBrightness support added for groups, solving issue #380 from @fjulian79 and updated Hue Group example accordingly
+* Updated package dependencies
+
+### v4.2.5
 
 * Merged pull request #412, New button outputs & unload nodes from @FredBlo
 
