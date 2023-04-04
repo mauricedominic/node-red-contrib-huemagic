@@ -20,7 +20,8 @@ module.exports = function(RED)
 			HueTemperatureMessage,
 			HueBrightnessMessage,
 			HueButtonsMessage,
-			HueRulesMessage
+			HueRulesMessage,
+			HueDialMessage
 		} = require('./utils/messages');
 
 	function HueBridge(config)
@@ -463,6 +464,21 @@ module.exports = function(RED)
 							return false;
 						}
 					}
+					else if (type == "relative_rotary")
+					{
+						try {
+							const message = new HueDialMessage(targetResource, options);
+							// GET & SAVE LAST STATE AND DIFFERENCES
+							let currentState = message.msg;
+							scope.lastStates[type + targetResource.id] = Object.assign({}, currentState);
+							currentState.updated = (lastState === false) ? {} : diff(lastState, currentState);
+							currentState.lastState = lastState;
+
+							return currentState;
+						} catch (error) {
+							return false;
+						}
+					}
 					else
 					{
 						return false;
@@ -596,7 +612,8 @@ module.exports = function(RED)
 				"light_level": ["light_level", "zigbee_connectivity", "zgp_connectivity", "device_power", "device"],
 				"button": ["button", "zigbee_connectivity", "zgp_connectivity", "device_power", "device"],
 				"group": ["group", "light", "grouped_light"],
-				"rule": ["rule"]
+				"rule": ["rule"],
+				"relative_rotary": ["relative_rotary", "zigbee_connectivity", "zgp_connectivity", "device_power", "device"],
 			};
 
 			if(!id)
