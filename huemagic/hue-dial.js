@@ -77,7 +77,6 @@ module.exports = function (RED) {
         this.on('input', function(msg, send, done)
         {
             // REDEFINE SEND AND DONE IF NOT AVAILABLE
-            send = send || function() { scope.send.apply(scope,arguments); }
             done = done || function() { scope.done.apply(scope,arguments); }
 
             // SAVE LAST COMMAND
@@ -113,7 +112,7 @@ module.exports = function (RED) {
                 // RESET LAST COMMAND
                 scope.lastCommand = null;
 
-                if(done) { done(); }
+                 done();
                 return true;
             }
         });
