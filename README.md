@@ -12,6 +12,9 @@ As the HueMagic main repository has been less frequently updated, I decided on t
 
 # HueMagic - Fork contrib migration
 
+You can migrate via the UI or via Terminal.
+
+## UI Migration
 In order to make use of this fork without having to re-create all of your existing Node-RED flows, you can take the following steps:
 
 1. Create a backup of all flows that refer to the huemagic nodes
@@ -23,6 +26,13 @@ In order to make use of this fork without having to re-create all of your existi
 7. Restore the backup created in step 1
 8. Deploy all changes
 
+## Terminal Migration
+1. Go into the .node-red directory
+2. execute 'npm remove node-red-contrib-huemagic'
+3. execute 'npm install node-red-contrib-huemagic-fork'
+4. Restart node red
+
+# HueMagic
 ### Features
 
 * Simple and comprehensive control of the Hue Bridge and connected devices
