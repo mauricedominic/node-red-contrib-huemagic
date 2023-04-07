@@ -40,7 +40,8 @@
       "hue-motion": "huemagic/hue-motion.js",
       "hue-temperature": "huemagic/hue-temperature.js",
       "hue-brightness": "huemagic/hue-brightness.js",
-      "hue-rules": "huemagic/hue-rules.js"
+      "hue-rules": "huemagic/hue-rules.js",
+      "hue-dial": "huemagic/hue-dial.js"
     }
   },
   "engines": {
