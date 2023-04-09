@@ -2,10 +2,20 @@
 
 # Changelog
 
-### v4.2.6 (latest)
+### v4.2.7 (latest)
+
+* Merged pull requests #368 (enhanced), #369, #371, gradient color fixes from @schnyderyx
+* Merged pull request #5, decrementBrightness support added for groups from @fjulian79 and updated Hue Group flow example accordingly
+* Merged pull request #9, Terminal migration description added to Readme from @bond2k 
+* Merged pull request #10, added Support for Hue Tap dial switch from @rainbow-six3
+* Fixed an issue with Randomcolor handling on the hue light node
+* Various minor code improvements
+* Updated package dependencies
+
+### v4.2.6
 
 * Fork contrib migration instructions added to README
-* Merged pull request #417, #1, incrementBrightness support added for groups, solving issue #380 from @fjulian79 and updated Hue Group example accordingly
+* Merged pull request #417, #1, incrementBrightness support added for groups, solving issue #380 from @fjulian79 and updated Hue Group flow example accordingly
 * Updated package dependencies
 
 ### v4.2.5

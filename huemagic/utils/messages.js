@@ -218,18 +218,20 @@ class HueLightMessage
 			this.message.payload.gradient = {};
 			this.message.payload.gradient.colors = [];
 
-			for(let gradientColor in service["gradient"]["points"])
-			{
-				let gradientColorRGB = colorUtils.xyBriToRgb(gradientColor.color.xy.x, gradientColor.color.xy.y, (gradientColor.dimming ? service.dimming.brightness : 100));
+			if (service["gradient"]["points"])
+				{
+					for(let gradientColor of service["gradient"]["points"])
+					{
+						let gradientColorRGB = colorUtils.xyBriToRgb(gradientColor.color.xy.x, gradientColor.color.xy.y, (gradientColor.dimming ? service.dimming.brightness : 100));
 
-				let oneColorPack = {};
-				oneColorPack.rgb = [gradientColorRGB.r, gradientColorRGB.g, gradientColorRGB.b];
-				oneColorPack.hex = colorUtils.rgbHex(gradientColorRGB.r, gradientColorRGB.g, gradientColorRGB.b);
-				oneColorPack.xyColor = gradientColor.color.xy.x;
+						let oneColorPack = {};
+						oneColorPack.rgb = [gradientColorRGB.r, gradientColorRGB.g, gradientColorRGB.b];
+						oneColorPack.hex = colorUtils.rgbHex(gradientColorRGB.r, gradientColorRGB.g, gradientColorRGB.b);
+						oneColorPack.xyColor = gradientColor.color.xy.x;
 
-				this.message.payload.gradient.colors.push(oneColorPack);
-			}
-
+						this.message.payload.gradient.colors.push(oneColorPack);
+					}
+				}
 			this.message.payload.gradient.numColors = service["gradient"]["points"] ? service["gradient"]["points"].length : 0;
 			this.message.payload.gradient.totalColors = service["gradient"]["points_capable"];
 		}
@@ -449,7 +451,6 @@ class HueTemperatureMessage
 		return this.message;
 	}
 }
-
 //
 // HUE BUTTONS
 class HueDialMessage {

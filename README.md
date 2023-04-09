@@ -395,7 +395,8 @@ In addition to simply switching it on and off, there are also many other options
 | toggle (boolean / any) | Toggles between switching on and off, depending on the previous status of the group |
 | brightness (int / string) | Percentage value of the light brightness (0-100) or a string with the value `auto` to automatically set the light brightness based on the current time |
 | brightnessLevel (int) | Numerical value of the light brightness (0-254) |
-| incrementBrightness (int) | Percentage value of a relative brightness change. Valid range is from -100 to +100, default is +10 |
+| incrementBrightness (int) | Percentage value of a relative brightness change. Positive values will increase brightness. Valid range is from -100 to +100, default is +10 |
+| decrementBrightness (int) | Percentage value of a relative brightness change. Positive values will decrease brightness. Valid range is from -100 to +100, default is +10 |
 | color (string) | `random` to set a random color or an English color name (e.g. `red`) |
 | hex (string) | Color value in hexadecimal in the form of a string |
 | rgb (array [0,0,0]) | Color value in RGB format in the form of an array |
@@ -885,16 +886,23 @@ Contains the complete status object (see output values above) of the last status
 If the status of the node has changed via a certain command, the entire command that was executed is also output. Otherwise this object will not be output by the node.
 
 
+
 # Changelog
 
-### v4-next0
+### v4.2.7 (latest)
 
-* Added Support for Hue Tap dial switch
+* Merged pull requests #368 (enhanced), #369, #371, gradient color fixes from @schnyderyx
+* Merged pull request #5, decrementBrightness support added for groups from @fjulian79 and updated Hue Group flow example accordingly
+* Merged pull request #9, Terminal migration description added to Readme from @bond2k 
+* Merged pull request #10, added Support for Hue Tap dial switch from @rainbow-six3
+* Fixed an issue with Randomcolor handling on the hue light node
+* Various minor code improvements
+* Updated package dependencies
 
-### v4.2.6 (latest)
+### v4.2.6
 
 * Fork contrib migration instructions added to README
-* Merged pull request #417, #1, incrementBrightness support added for groups, solving issue #380 from @fjulian79 and updated Hue Group example accordingly
+* Merged pull request #417, #1, incrementBrightness support added for groups, solving issue #380 from @fjulian79 and updated Hue Group flow example accordingly
 * Updated package dependencies
 
 ### v4.2.5

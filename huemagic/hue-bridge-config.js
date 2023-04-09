@@ -275,6 +275,12 @@ module.exports = function(RED)
 					// NO PREVIOUS STATE?
 					if(!previousState) { return false; }
 
+					// IS LIGHT? -> REMOVE PREVIOUS GRADIENT COLORS
+					if(type === "light" && resource["gradient"])
+					{
+						delete previousState["gradient"];
+					}
+
 					// CHECK DIFFERENCES
 					const mergedState = merge.deep(previousState, resource);
 					const updatedResources = diff(previousState, mergedState);
@@ -464,23 +470,23 @@ module.exports = function(RED)
 							return false;
 						}
 					}
-					else if (type == "relative_rotary")
-					{
-						try {
-							const message = new HueDialMessage(targetResource, options);
-							// GET & SAVE LAST STATE AND DIFFERENCES
-							let currentState = message.msg;
-							scope.lastStates[type + targetResource.id] = Object.assign({}, currentState);
-							currentState.updated = (lastState === false) ? {} : diff(lastState, currentState);
-							currentState.lastState = lastState;
-
-							return currentState;
-						} catch (error) {
-							return false;
-						}
-					}
 					else
 					{
+						return false;
+					}
+				}
+				else if (type == "relative_rotary")
+				{
+					try {
+						const message = new HueDialMessage(targetResource, options);
+						// GET & SAVE LAST STATE AND DIFFERENCES
+						let currentState = message.msg;
+						scope.lastStates[type + targetResource.id] = Object.assign({}, currentState);
+						currentState.updated = (lastState === false) ? {} : diff(lastState, currentState);
+						currentState.lastState = lastState;
+
+						return currentState;
+					} catch (error) {
 						return false;
 					}
 				}
@@ -613,7 +619,7 @@ module.exports = function(RED)
 				"button": ["button", "zigbee_connectivity", "zgp_connectivity", "device_power", "device"],
 				"group": ["group", "light", "grouped_light"],
 				"rule": ["rule"],
-				"relative_rotary": ["relative_rotary", "zigbee_connectivity", "zgp_connectivity", "device_power", "device"],
+				"relative_rotary": ["relative_rotary", "zigbee_connectivity", "zgp_connectivity", "device_power", "device"]
 			};
 
 			if(!id)
@@ -868,7 +874,7 @@ module.exports = function(RED)
 					{
 						for (const [deviceID, targetDevice] of Object.entries(resource["services"][targetType]))
 						{
-							var oneDevice = {};
+							let oneDevice = {};
 							oneDevice.id = id;
 							oneDevice.name = resource.metadata ? resource.metadata.name : false;
 							oneDevice.model = resource.product_data ? resource.product_data.product_name : false;
@@ -881,7 +887,7 @@ module.exports = function(RED)
 					{
 						if(resource["services"] && resource["services"]["grouped_light"])
 						{
-							var oneDevice = {};
+							let oneDevice = {};
 							oneDevice.id = id;
 							oneDevice.name = resource.metadata ? resource.metadata.name : false;
 							oneDevice.model = resource["type"];
@@ -892,7 +898,7 @@ module.exports = function(RED)
 					// SCENES
 					else if(targetType === "scene" && resource["type"] == "scene")
 					{
-						var oneDevice = {};
+						let oneDevice = {};
 						oneDevice.id = id;
 						oneDevice.name = resource.metadata ? resource.metadata.name : false;
 						oneDevice.group = processedResources[resource["group"]["rid"]].metadata.name;
