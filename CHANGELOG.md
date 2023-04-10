@@ -2,7 +2,11 @@
 
 # Changelog
 
-### v4.2.7 (latest)
+### v4.2.8 (latest)
+
+* Fixed an issue with Dial Node not working ([#11](https://github.com/mauricedominic/node-red-contrib-huemagic/issues/11))
+
+### v4.2.7
 
 * Merged pull requests #368 (enhanced), #369, #371, gradient color fixes from @schnyderyx
 * Merged pull request #5, decrementBrightness support added for groups from @fjulian79 and updated Hue Group flow example accordingly

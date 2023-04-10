@@ -470,26 +470,26 @@ module.exports = function(RED)
 							return false;
 						}
 					}
-					else
+					else if (type == "relative_rotary")
 					{
-						return false;
-					}
-				}
-				else if (type == "relative_rotary")
-				{
-					try {
-						const message = new HueDialMessage(targetResource, options);
-						// GET & SAVE LAST STATE AND DIFFERENCES
-						let currentState = message.msg;
-						scope.lastStates[type + targetResource.id] = Object.assign({}, currentState);
-						currentState.updated = (lastState === false) ? {} : diff(lastState, currentState);
-						currentState.lastState = lastState;
+						try {
+							const message = new HueDialMessage(targetResource, options);
+							// GET & SAVE LAST STATE AND DIFFERENCES
+							let currentState = message.msg;
+							scope.lastStates[type + targetResource.id] = Object.assign({}, currentState);
+							currentState.updated = (lastState === false) ? {} : diff(lastState, currentState);
+							currentState.lastState = lastState;
 
-						return currentState;
-					} catch (error) {
-						return false;
+							return currentState;
+						} catch (error) {
+							return false;
+						}
 					}
+				else
+				{
+					return false;
 				}
+			}
 				else
 				{
 					return false;
