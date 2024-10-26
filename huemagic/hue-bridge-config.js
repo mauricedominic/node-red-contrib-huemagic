@@ -253,8 +253,10 @@ module.exports = function(RED)
 
 						if(scope.resources[targetId])
 						{
-							// GET PREVIOUS STATE
-							previousState = scope.resources[targetId]["services"][type][id];
+							if (scope.resources[targetId]["services"][type]) {
+								// GET PREVIOUS STATE
+								previousState = scope.resources[targetId]["services"][type][id];
+							}
 
 							// IS BUTTON? -> REMOVE PREVIOUS STATES
 							if(type === "button")
