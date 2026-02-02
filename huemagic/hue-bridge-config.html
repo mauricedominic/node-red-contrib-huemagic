@@ -4,6 +4,13 @@
 		<input type="text" id="node-config-input-name" style="width: calc(100% - 105px)">
 	</div>
 	<div class="form-row">
+		<label for="node-config-input-protocol"><i class="fa fa-lock"></i> <span>Protocole</span></label>
+		<select id="node-config-input-protocol" style="width: calc(100% - 105px)">
+			<option value="http">HTTP</option>
+			<option value="https">HTTPS</option>
+		</select>
+	</div>
+	<div class="form-row">
 		<label for="node-config-input-bridge"><i class="fa fa-server"></i> Bridge IP</label>
 		<div style="display: inline-flex; width: calc(100% - 105px)">
             <div id="input-select-toggle" style="flex-grow: 1;">
@@ -49,6 +56,7 @@
 		color: '#c7d8d8',
 		defaults: {
 			name: { value:"Hue Bridge", required: true },
+			protocol: { value: "http" },
 			bridge: { value:"", required: true },
 			key: { value:"", required: true },
 			worker: { value: 10, required: true, validate: function(v) {
@@ -148,10 +156,11 @@
 					// TRIGGER SEARCHING NOTIFICATION
 					var notification = RED.notify(scope._("hue-bridge-config.config.connecting"), { type: "compact", modal: true, fixed: true });
 
+					var protocol = $('#node-config-input-protocol').val() || 'http';
 					$.ajax({
 						url: 'hue/name',
 						type: "GET",
-						data: { ip: currentBridgeIP },
+						data: { ip: currentBridgeIP, protocol: protocol },
 						timeout: 3000
 					})
 					.done( function(data)
@@ -195,9 +204,10 @@
 
 					RED.notify(scope._("hue-bridge-config.config.new-user-press"));
 
+					var protocol = $('#node-config-input-protocol').val() || 'http';
 					setTimeout(function()
 					{
-						$.get('hue/register', { ip: $('#node-config-input-bridge').val() } )
+						$.get('hue/register', { ip: $('#node-config-input-bridge').val(), protocol: protocol } )
 						.done( function(data)
 						{
 							if(data == "error")

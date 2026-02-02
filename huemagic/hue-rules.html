@@ -108,7 +108,7 @@
                 var notification = RED.notify(scope._("hue-rules.config.searching"), { type: "compact", modal: true, fixed: true });
 
                 // GET THE SENSORS
-                $.get('hue/resources', { bridge: bridgeConfig.bridge, key: bridgeConfig.key, type: "rule" })
+                $.get('hue/resources', { bridge: bridgeConfig.bridge, key: bridgeConfig.key, protocol: bridgeConfig.protocol || 'http', type: "rule" })
                 .done( function(data) {
                     var allResources = JSON.parse(data);
                     allResources = sortResourcesBy('name', allResources);

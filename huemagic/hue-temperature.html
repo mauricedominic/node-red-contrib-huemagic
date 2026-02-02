@@ -108,7 +108,7 @@
                 var notification = RED.notify(scope._("hue-temperature.config.searching"), { type: "compact", modal: true, fixed: true });
 
                 // GET THE SENSORS
-                $.get('hue/resources', { bridge: bridgeConfig.bridge, key: bridgeConfig.key, type: "temperature" })
+                $.get('hue/resources', { bridge: bridgeConfig.bridge, key: bridgeConfig.key, protocol: bridgeConfig.protocol || 'http', type: "temperature" })
                 .done( function(data) {
                     var allResources = JSON.parse(data);
                     allResources = sortResourcesBy('name', allResources);

@@ -111,7 +111,7 @@
                 });
 
                 // GET THE dialS
-                $.get('hue/resources', {bridge: bridgeConfig.bridge, key: bridgeConfig.key, type: "button"})
+                $.get('hue/resources', {bridge: bridgeConfig.bridge, key: bridgeConfig.key, protocol: bridgeConfig.protocol || 'http', type: "button"})
                     .done(function (data) {
                         var allResources = JSON.parse(data);
                         allResources = sortResourcesBy('name', allResources);

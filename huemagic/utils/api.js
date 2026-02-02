@@ -9,6 +9,34 @@ function API()
 	this.events = {};
 
 	//
+	// HELPER: NORMALIZE BRIDGE URL WITH APPROPRIATE PROTOCOL AND PORT
+	this.normalizeBridgeUrl = function(bridge, protocol)
+	{
+		// Determine protocol (default HTTP for compatibility)
+		protocol = protocol || 'http';
+		
+		// If a port is already specified, keep it
+		if (bridge.indexOf(':') !== -1) {
+			return bridge;
+		}
+		// Otherwise, add default port according to protocol
+		if (protocol === 'https') {
+			return bridge + ':443';
+		} else {
+			return bridge + ':80';
+		}
+	};
+	
+	//
+	// HELPER: BUILD COMPLETE URL WITH PROTOCOL
+	this.buildBridgeUrl = function(bridge, protocol)
+	{
+		protocol = protocol || 'http';
+		var bridgeUrl = this.normalizeBridgeUrl(bridge, protocol);
+		return protocol + '://' + bridgeUrl;
+	};
+
+	//
 	// INITIALIZE
 	this.init = function({ config = null })
 	{
@@ -24,12 +52,20 @@ function API()
 			}
 
 			// GET BRIDGE INFORMATION
-			axios({
+			var protocol = config.protocol || 'http';
+			var fullUrl = scope.buildBridgeUrl(config.bridge, protocol);
+			var axiosConfig = {
 				"method": "GET",
-				"url": "https://" + config.bridge + "/api/config",
-				"headers": { "Content-Type": "application/json; charset=utf-8" },
-				"httpsAgent": new https.Agent({ rejectUnauthorized: false }),
-			})
+				"url": fullUrl + "/api/config",
+				"headers": { "Content-Type": "application/json; charset=utf-8" }
+			};
+			
+			// Add httpsAgent only for HTTPS
+			if (protocol === 'https') {
+				axiosConfig["httpsAgent"] = new https.Agent({ rejectUnauthorized: false });
+			}
+			
+			axios(axiosConfig)
 			.then(function(response)
 			{
 				resolve(response.data);
@@ -55,15 +91,21 @@ function API()
 			}
 
 			// BUILD REQUEST OBJECT
+			var protocol = config.protocol || 'http';
+			var fullUrl = scope.buildBridgeUrl(config.bridge, protocol);
 			var request = {
 				"method": method,
-				"url": "https://" + config.bridge,
+				"url": fullUrl,
 				"headers": {
 					"Content-Type": "application/json; charset=utf-8",
 					"hue-application-key": config.key
-				},
-				"httpsAgent": new https.Agent({ rejectUnauthorized: false }), // Node is somehow not able to parse the official Philips Hue PEM
+				}
 			};
+			
+			// Add httpsAgent only for HTTPS
+			if (protocol === 'https') {
+				request["httpsAgent"] = new https.Agent({ rejectUnauthorized: false }); // Node is somehow not able to parse the official Philips Hue PEM
+			}
 
 			// HAS RESOURCE? -> APPEND
 			if(resource !== null)
@@ -120,13 +162,21 @@ function API()
 		{
 			if(!scope.events[config.id])
 			{
-				var sseURL = "https://" + config.bridge + "/eventstream/clip/v2";
+				var protocol = config.protocol || 'http';
+				var fullUrl = scope.buildBridgeUrl(config.bridge, protocol);
+				var sseURL = fullUrl + "/eventstream/clip/v2";
 
 				// INITIALIZE EVENT SOURCE
-				scope.events[config.id] = new EventSource(sseURL, {
-					headers: { 'hue-application-key': config.key },
-					https: { rejectUnauthorized: false },
-				});
+				var eventSourceOptions = {
+					headers: { 'hue-application-key': config.key }
+				};
+				
+				// Add HTTPS options only for HTTPS
+				if (protocol === 'https') {
+					eventSourceOptions.https = { rejectUnauthorized: false };
+				}
+				
+				scope.events[config.id] = new EventSource(sseURL, eventSourceOptions);
 
 				// PIPE MESSAGE TO TARGET FUNCTION
 				scope.events[config.id].onmessage = function(event)

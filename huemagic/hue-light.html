@@ -115,7 +115,7 @@
                 var notification = RED.notify(scope._("hue-light.config.searching"), { type: "compact", modal: true, fixed: true });
 
                 // GET THE LIGHTS
-                $.get('hue/resources', { bridge: bridgeConfig.bridge, key: bridgeConfig.key, type: "light" })
+                $.get('hue/resources', { bridge: bridgeConfig.bridge, key: bridgeConfig.key, protocol: bridgeConfig.protocol || 'http', type: "light" })
                 .done( function(data) {
                     var allResources = JSON.parse(data);
                     allResources = sortResourcesBy('name', allResources);

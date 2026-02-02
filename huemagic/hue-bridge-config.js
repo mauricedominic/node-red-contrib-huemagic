@@ -770,7 +770,8 @@ module.exports = function(RED)
 	    }
 	    else
 	    {
-			API.init({ config: { bridge: req.query.ip, key: "huemagic" } })
+			var protocol = req.query.protocol || 'http';
+			API.init({ config: { bridge: req.query.ip, key: "huemagic", protocol: protocol } })
 			.then(function(bridge) {
 				res.end(bridge.name);
 			})
@@ -790,17 +791,37 @@ module.exports = function(RED)
 		}
 		else
 		{
-			axios({
+			// Determine protocol (default HTTP for compatibility)
+			var protocol = req.query.protocol || 'http';
+			
+			// Determine port: if already specified in IP, keep it, otherwise use default port
+			var bridgeUrl = req.query.ip;
+			if (bridgeUrl.indexOf(':') === -1) {
+				// No port specified, add default port according to protocol
+				if (protocol === 'https') {
+					bridgeUrl = bridgeUrl + ':443';
+				} else {
+					bridgeUrl = bridgeUrl + ':80';
+				}
+			}
+			
+			var axiosConfig = {
 				"method": "POST",
-				"url": "http://"+req.query.ip+"/api",
-				"httpsAgent": new https.Agent({ rejectUnauthorized: false }),
+				"url": protocol + "://" + bridgeUrl + "/api",
 				"headers": {
 					"Content-Type": "application/json; charset=utf-8"
 				},
 				"data": {
 					"devicetype": "HueMagic for Node-RED (" + Math.floor((Math.random() * 100) + 1) + ")"
 				}
-			})
+			};
+			
+			// Add httpsAgent only for HTTPS
+			if (protocol === 'https') {
+				axiosConfig["httpsAgent"] = new https.Agent({ rejectUnauthorized: false });
+			}
+			
+			axios(axiosConfig)
 			.then(function(response)
 			{
 				var bridge = response.data;
@@ -824,11 +845,12 @@ module.exports = function(RED)
 	RED.httpAdmin.get('/hue/resources', function(req, res, next)
 	{
 		const targetType = req.query.type;
+		var protocol = req.query.protocol || 'http';
 
 		// GET ALL RULES
 		if(targetType == "rule")
 		{
-			API.request({ config: { bridge: req.query.bridge, key: req.query.key }, resource: "/rules", version: 1 })
+			API.request({ config: { bridge: req.query.bridge, key: req.query.key, protocol: protocol }, resource: "/rules", version: 1 })
 			.then(function(rules)
 			{
 				let targetRules = {};
@@ -856,7 +878,7 @@ module.exports = function(RED)
 		// GET ALL OTHER RESOURCES
 		else
 		{
-			API.request({ config: { bridge: req.query.bridge, key: req.query.key }, resource: "all" })
+			API.request({ config: { bridge: req.query.bridge, key: req.query.key, protocol: protocol }, resource: "all" })
 			.then(function(allResources)
 			{
 				return API.processResources(allResources);
