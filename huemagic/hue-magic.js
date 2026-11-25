@@ -87,6 +87,10 @@ module.exports = function(RED)
 			message.animation.status = false;
 			message.animation.restore = restoreState;
 
+			// Allow the next animation to announce its start again, so that hue-light
+			// saves the current state and can restore it correctly when the animation stops
+			scope.firstRun = false;
+
 			scope.send(message);
 			if (done) { done(); }
 		}
